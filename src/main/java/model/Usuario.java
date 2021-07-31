@@ -1,18 +1,23 @@
 package model;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 
 @Entity
-public class Usuario {
+public class Usuario implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	
 	@Id
@@ -26,9 +31,26 @@ public class Usuario {
 	@ManyToOne(optional = true, fetch = FetchType.EAGER)
 	private Perfil perfil;
 
-	@OneToMany(mappedBy = "usuario")
-	private List<Endereco> enderecos;
+	@ManyToMany
+	@JoinTable(name = "endereco_usuario", joinColumns = @JoinColumn(name = "usuario_id"),
+	inverseJoinColumns = @JoinColumn(name = "endereco_id"))
+	private Set<Endereco> enderecos = new HashSet<>();
 	
+	public Usuario() {
+		
+	}
+		
+	public Usuario(Long id, String nome, String email, String cpf, Perfil perfil) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.cpf = cpf;
+		this.perfil = perfil;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
@@ -60,14 +82,11 @@ public class Usuario {
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
-	
-	
-	public List<Endereco> getEnderecos() {
+		
+	public Set<Endereco> getEnderecos() {
 		return enderecos;
 	}
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
-	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

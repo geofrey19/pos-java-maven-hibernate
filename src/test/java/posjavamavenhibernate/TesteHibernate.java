@@ -30,7 +30,7 @@ public class TesteHibernate {
 	public void testeBuscar() {
 		DaoGeneric<Usuario> daoGeneric = new DaoGeneric<Usuario>();
 		Usuario usuario = new Usuario();
-		usuario.setId(10L);
+		usuario.setId(15L);
 		usuario = daoGeneric.pesquisar(usuario);
 		System.out.println(usuario);
 	}
@@ -73,8 +73,6 @@ public class TesteHibernate {
 
 	}
 
-	
-		
 	@Test
 	public void testeQueryListParameter() {
 		DaoGeneric<Usuario> daoGeneric = new DaoGeneric<Usuario>();
@@ -92,12 +90,11 @@ public class TesteHibernate {
 	public void testeGravaEndereco() {
 		DaoGeneric daoGeneric = new DaoGeneric();
 		
-		Usuario usuario = (Usuario) daoGeneric.pesquisar(10L, Usuario.class);
+		Usuario usuario = (Usuario) daoGeneric.pesquisar(15L, Usuario.class);
 		
 		Endereco endereco = new Endereco();
 		endereco.setTipo("Rua");
-		endereco.setNumero(964);
-		endereco.setUsuario(usuario);
+		endereco.setNumero(965);
 		endereco.setLogradouro("Rua Arhtur de Azevedo");
 		endereco.setComplemento("Cond. Joia da Praia");
 		daoGeneric.salvar(endereco);
@@ -121,7 +118,7 @@ public class TesteHibernate {
 		for (Endereco endereco : usuario.getEnderecos()) {
 			System.out.println(endereco.getTipo());
 			System.out.println(endereco.getLogradouro());
-			System.out.println(endereco.getUsuario().getNome());
+			
 			System.out.println("-------------------------------");
 		}
 	}
