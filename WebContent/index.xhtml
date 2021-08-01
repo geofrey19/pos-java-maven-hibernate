@@ -10,11 +10,10 @@
 	<h:form>
 		<h:panelGrid columns="2">
 			<h:outputLabel>Id:</h:outputLabel>
-			<h:inputText readonly="true"
-				value="#{usuarioManagedBean.usuario.id}" />
-<h:inputText id="nome" onclick="this.value='troquei o valor'" onchange="alert('pqp')"/>
+			<h:inputText readonly="true" value="#{usuarioManagedBean.usuario.id}" />
+		
 			<h:outputLabel>Nome:</h:outputLabel>
-			<h:inputText value="#{usuarioManagedBean.usuario.nome}"/>
+			<h:inputText value="#{usuarioManagedBean.usuario.nome}" />
 		</h:panelGrid>
 	</h:form>
 </h:body>

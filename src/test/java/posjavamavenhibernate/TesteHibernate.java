@@ -15,7 +15,7 @@ public class TesteHibernate {
 	public void testeHibernateUtil() {
 		/* HibernateUtil.getEntityManager(); */
 		DaoGeneric daoGeneric = new DaoGeneric<Usuario>();
-		Perfil perfil =  (Perfil) daoGeneric.pesquisar(23L, Perfil.class);
+		Perfil perfil =  (Perfil) daoGeneric.pesquisar(29L, Perfil.class);
 		Usuario usuario = new Usuario();
 
 		usuario.setNome("George Hilton Frey");
@@ -45,8 +45,10 @@ public class TesteHibernate {
 	@Test
 	public void testeUpdateUsuario() {
 		DaoGeneric daoGeneric = new DaoGeneric<Usuario>();
-		Perfil perfil = (Perfil) daoGeneric.pesquisar(24L, Perfil.class );
-		Usuario usuario = (Usuario) daoGeneric.pesquisar(25L, Usuario.class);
+		Perfil perfil = (Perfil) daoGeneric.pesquisar(29L, Perfil.class );
+		Usuario usuario = (Usuario) daoGeneric.pesquisar(30L, Usuario.class);
+		Endereco endereco = (Endereco) daoGeneric.pesquisar(31L, Endereco.class);
+		usuario.getEnderecos().add(endereco);
 		usuario.setPerfil(perfil);
 		usuario.setNome("Hilton");
 		daoGeneric.updateMerge(usuario);
